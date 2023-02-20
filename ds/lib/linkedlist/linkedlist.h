@@ -8,6 +8,9 @@
 #define DS_LINKEDLIST_H
 
 #endif //DS_LINKEDLIST_H
+#if !defined(ARRAY_SIZE)
+#define ARRAY_SIZE(x) (sizeof((x)) / sizeof((x)[0]))
+#endif
 
 typedef struct nodeType {
     int data;
@@ -32,7 +35,7 @@ Node *ll_insert_next(Node *inputNode, int data) {
  */
 Node *ll_insert(Node *head, int data) {
     Node *itr = head;
-    while (itr->next != NULL) {
+    while (itr!=NULL && itr->next != NULL) {
         itr = itr->next;
     }
     return ll_insert_next(itr, data);
@@ -75,3 +78,19 @@ int ll_insert_rand(Node *head, int data, int pos) {
     prev->next = newnode;
     return status;
 }
+
+Node* ll_from_array(int *arr, int size){
+    Node* head = NULL;
+    for(int i=0;i<=size-1;i++){
+        if(i==0){
+            head = ll_insert(NULL,*arr);//ll_init(1);
+        }else{
+            ll_insert(head,*arr);
+        }
+
+        arr++;
+    }
+    return head;
+}
+
+//void ll_deleteNode(Node* head, Node)
