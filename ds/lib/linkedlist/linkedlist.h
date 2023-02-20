@@ -12,40 +12,66 @@
 typedef struct nodeType {
     int data;
     struct nodeType *next;
-}Node;
-
-/*
- * Initialize the linked list O(1)
- */
-Node ll_init(int data){
-    Node *tmp = (Node *)malloc(sizeof (Node));
-    tmp->data = data;
-    tmp->next = NULL;
-    return *tmp;
-
-}
+} Node;
 
 /*
  * Insert next O(1)
  */
-void ll_insert_next(Node* inputNode, int data){
-    Node *tmp = (Node *)malloc(sizeof (Node));
+Node *ll_insert_next(Node *inputNode, int data) {
+    Node *tmp = (Node *) malloc(sizeof(Node));
     tmp->data = data;
     tmp->next = NULL;
-    inputNode->next=tmp;
+    if (NULL != inputNode) {
+        inputNode->next = tmp;
+    }
+    return tmp;
 }
 
 /*
- * Insert last O(n)
+ * Insert at last in the list O(n)
  */
-void ll_insert_last(Node* head, int data){
-    Node* itr = head;
-    while(itr->next!=NULL){
+Node *ll_insert(Node *head, int data) {
+    Node *itr = head;
+    while (itr->next != NULL) {
         itr = itr->next;
     }
-    ll_insert_next(itr,data);
+    return ll_insert_next(itr, data);
+
 }
 
-void ll_insert_rand(Node* head, int data, int pos){
+/*
+ * Search for LL node for a given position. Head position is considered 1st location.
+ */
+Node *ll_search_pos(Node *head, int pos) {
+    Node *tmp = head;
+    int count = 1;
+    if (pos > 1) {
+        while (pos != count && tmp->next != NULL) {
+            tmp = tmp->next;
+            count++;
+        }
+    } else {
+        tmp = NULL;
+    }
+    if (pos > count) {
+        tmp = NULL;
+    }
+    return tmp;
+}
 
+/*
+ * Insert the node at a give position.
+ * O(n)
+ */
+int ll_insert_rand(Node *head, int data, int pos) {
+    int status = 0;
+    Node *prev = ll_search_pos(head, pos - 1);
+    Node *prevnextbuf = prev->next;
+
+    Node *newnode = (Node *) malloc(sizeof(Node));
+    newnode->data = data;
+    newnode->next = prevnextbuf;
+
+    prev->next = newnode;
+    return status;
 }
