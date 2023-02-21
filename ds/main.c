@@ -1,28 +1,21 @@
 #include <stdio.h>
 #include "lib/linkedlist/linkedlist.h"
 
-void testll();
-
-void removeDup();
-
-Node *findUniqNext(Node *inp);
-
+void removeDup(int* input, int size);
 static int dupCount = 0;
 
 int main() {
-    printf("Hello, World!\n");
-    removeDup();
+    //Success conditions
+    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
+    //int input[] = {2,4, 5, 16, 23, 34, 45, 51};
+    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
+    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
+    removeDup(input,ARRAY_SIZE(input));
     return 0;
 }
 
-void removeDup() {
-    //Success conditions
-    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
-    //int input[] = {2,4, 5, 16, 23, 34, 45, 51};
-    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
-    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
-
-    Node *head = ll_from_array(input, ARRAY_SIZE(input));
+void removeDup(int* input, int size) {
+    Node *head = ll_from_array(input, size);
     printf("\nInput : ");ll_print(head);
     int count = 0;
     Node *basePtr = NULL;
@@ -50,34 +43,5 @@ void removeDup() {
     printf("\nNumber of corrupted files %d",count);
 }
 
-
-/*Node *findUniqNext(Node *inp) {
-    Node *next = inp->next;
-    if (next == NULL) return NULL;
-    Node *nextnext = next->next;
-    if (nextnext == NULL) return next;
-    int flag = -1;
-    while (next->data == nextnext->data) {
-        flag = 1;
-        nextnext = nextnext->next;
-    }
-    if (flag == 1) {
-        dupCount++;
-        return nextnext;
-    } else
-        return next;
-}
-*/
-
-void testll() {
-    Node head = *ll_insert(NULL, 1);//ll_init(1);
-    ll_insert(&head, 2);
-    ll_insert(&head, 3);
-    ll_insert(&head, 4);
-    ll_insert_rand(&head, 0, 3);
-    printf("%d", head.data);
-    printf("%d", head.next->data);
-    printf("%d", head.next->next->data);
-}
 
 
