@@ -17,21 +17,37 @@ int main() {
 
 void removeDup() {
     //Success conditions
-    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
+    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
     //int input[] = {2,4, 5, 16, 23, 34, 45, 51};
     //Failed conditions. TODO
-    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8,9,10,11};
-    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
+    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
+    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
     Node *head = ll_from_array(input, ARRAY_SIZE(input));
-    Node *temp = head;
-    do {
-        temp->next = findUniqNext(temp);
-        temp = temp->next;
-    } while (temp != NULL);
+    printf("Hello");
+    Node *basePtr = NULL;
+    Node *cmpZone = head;
+    Node *nxtPtr = head->next;
+    while (cmpZone != NULL && nxtPtr != NULL) {
+        int cmpDirtyFlg = 0;
+        while (cmpZone->data == nxtPtr->data) {
+            cmpDirtyFlg = 1;
+            nxtPtr = nxtPtr->next;
+        }
+        if(basePtr == NULL){
+            if(cmpDirtyFlg == 1) head = nxtPtr;
+            else basePtr = cmpZone;
+        }else{
+           if(cmpDirtyFlg == 1) basePtr->next = nxtPtr;
+            basePtr = cmpZone;
+        }
+        cmpZone = nxtPtr;
+        nxtPtr = nxtPtr->next;
+    }
     printf("Hello");
 }
 
-Node *findUniqNext(Node *inp) {
+
+/*Node *findUniqNext(Node *inp) {
     Node *next = inp->next;
     if (next == NULL) return NULL;
     Node *nextnext = next->next;
@@ -47,7 +63,7 @@ Node *findUniqNext(Node *inp) {
     } else
         return next;
 }
-
+*/
 
 void testll() {
     Node head = *ll_insert(NULL, 1);//ll_init(1);
