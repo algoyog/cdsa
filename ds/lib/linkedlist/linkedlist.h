@@ -93,4 +93,12 @@ Node* ll_from_array(int *arr, int size){
     return head;
 }
 
+void ll_print(Node* head){
+    Node* tmp = head;
+    while(tmp!=NULL){
+        printf(" %d ",tmp->data);
+        tmp = tmp->next;
+    }
+}
+
 //void ll_deleteNode(Node* head, Node)

@@ -19,10 +19,12 @@ void removeDup() {
     //Success conditions
     //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
     //int input[] = {2,4, 5, 16, 23, 34, 45, 51};
-    int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
-    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
+    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
+    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
+
     Node *head = ll_from_array(input, ARRAY_SIZE(input));
-    printf("Hello");
+    printf("\nInput : ");ll_print(head);
+    int count = 0;
     Node *basePtr = NULL;
     Node *cmpZone = head;
     Node *nxtPtr = head->next;
@@ -41,8 +43,11 @@ void removeDup() {
         }
         cmpZone = nxtPtr;
         nxtPtr = (nxtPtr!=NULL)?nxtPtr->next:NULL;
+        if (cmpDirtyFlg == 1) count++;
     }
-    printf("Hello");
+    //Printing Output
+    printf("\nOutput : ");ll_print(head);
+    printf("\nNumber of corrupted files %d",count);
 }
 
 
