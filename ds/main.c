@@ -19,9 +19,8 @@ void removeDup() {
     //Success conditions
     //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8};
     //int input[] = {2,4, 5, 16, 23, 34, 45, 51};
-    //Failed conditions. TODO
-    //int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
-    int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
+    int input[] = {1, 1, 3, 3, 4, 6, 6, 7, 8, 9, 10, 11};
+    //int input[] = {1, 3, 3, 3, 4, 6, 6, 7, 8,9,10,11,11};
     Node *head = ll_from_array(input, ARRAY_SIZE(input));
     printf("Hello");
     Node *basePtr = NULL;
@@ -29,7 +28,7 @@ void removeDup() {
     Node *nxtPtr = head->next;
     while (cmpZone != NULL && nxtPtr != NULL) {
         int cmpDirtyFlg = 0;
-        while (cmpZone->data == nxtPtr->data) {
+        while (nxtPtr!=NULL && cmpZone->data == nxtPtr->data) {
             cmpDirtyFlg = 1;
             nxtPtr = nxtPtr->next;
         }
@@ -41,7 +40,7 @@ void removeDup() {
             basePtr = cmpZone;
         }
         cmpZone = nxtPtr;
-        nxtPtr = nxtPtr->next;
+        nxtPtr = (nxtPtr!=NULL)?nxtPtr->next:NULL;
     }
     printf("Hello");
 }
