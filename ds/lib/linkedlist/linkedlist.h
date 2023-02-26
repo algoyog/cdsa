@@ -1,7 +1,3 @@
-//
-// Created by Aravind B on 20/02/23.
-//
-
 #include <stdlib.h>
 
 #ifndef DS_LINKEDLIST_H
