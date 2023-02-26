@@ -33,12 +33,14 @@ int main() {
 /* Method to remove duplicate and print the count and the updated linked list*/
 void removeDup(int* input, int size) {
     Node *head = ll_from_array(input, size);
+    printf("\nInput count:%d ",size);
     printf("\nInput : ");ll_print(head);
     int count = 0;
     if(head==NULL){
         printf("No Input");
         return;
     }else{
+
         if(head->next == NULL){
             printf("\nOutput : ");ll_print(head);
             printf("\nNumber of corrupted files %d",count);
@@ -46,6 +48,7 @@ void removeDup(int* input, int size) {
             return;
         }
     }
+
     Node *basePtr = NULL;
     Node *cmpZone = head;
     Node *nxtPtr = head->next;
