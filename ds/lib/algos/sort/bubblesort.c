@@ -2,10 +2,10 @@
 // Created by Aravind B on 14/03/23.
 //
 #include "stdio.h"
-void bubblesort(int*);
+void bubblesort(int*, int);
 
-void bubblesort(int* inp){
-    int len = sizeof (inp);
+void bubblesort(int* inp, int sz){
+    int len = sz;
     while (len>=0){
         int count=0;
         while (count<len){
